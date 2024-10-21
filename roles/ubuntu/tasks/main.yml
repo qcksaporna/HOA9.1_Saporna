@@ -1,0 +1,24 @@
+---
+- name: Update apt repository cache
+  apt:
+    update_cache: yes
+
+- name: Install Prometheus
+  apt:
+    name: prometheus
+    state: latest
+
+- name: Start Prometheus
+  service:
+    name: prometheus
+    state: restarted
+    enabled: true
+
+- name: Install Prometheus Dependencies
+  apt:
+    name:
+      - gcc
+      - make
+      - wget
+      - libgd-dev
+    state: latest
